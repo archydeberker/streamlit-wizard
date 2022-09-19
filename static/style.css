@@ -3,3 +3,7 @@ div.css-1n76uvr.e1tzin5v0{
     padding: 10px;
     border: 1px solid darkgray;
 }
+
+div.custom_centred {
+    text-align: center;
+}

@@ -20,8 +20,12 @@ class Page:
 
 
 class Wizard:
-    def __init__(self, pages: List[Page], initial_idx: int = 0):
+    def __init__(self, pages: List[Page], initial_idx: int = 0,
+                 display_page_count: bool = True):
+
         self.pages = pages
+        self.display_page_count = display_page_count
+
         if len(set([page.name for page in pages])) != len(self.pages):
             raise ValueError(
                 "Please give your pages unique names, otherwise we cannot store "
@@ -44,10 +48,8 @@ class Wizard:
 
     @current_page_idx.setter
     def current_page_idx(self, new_page):
-        if new_page <= (len(self.pages) - 1):
+        if 0 <= new_page <= (len(self.pages) - 1):
             st.session_state["current_page_idx"] = new_page
-        else:
-            raise ValueError("You're beyond the final page!")
 
         st.experimental_rerun()
 
@@ -93,4 +95,10 @@ class Wizard:
     def progress_bar(self):
 
         _, col1, _ = st.columns((2, 4, 2))
+        if self.display_page_count:
+            col1.markdown(
+                f'<div class="custom_centred"> This is page {self.current_page_idx + 1} of {self.total_pages} <div>',
+                unsafe_allow_html=True)
+
+        col1.write("")
         col1.progress(((self.current_page_idx + 1) / self.total_pages))
