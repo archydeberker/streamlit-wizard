@@ -19,3 +19,20 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 
+# Example Usage
+```
+from streamlit_wizard import components, example_pages
+
+intro = example_pages.IntroPage(name="intro")
+data = example_pages.FirstPageOfQuestions(name="questions")
+
+wizard = components.Wizard(pages=[intro, data])
+
+wizard.render()
+```
+
+# Publishing
+`python3 -m build`
+
+`python3 -m twine upload --repository testpypi dist/*`
+
