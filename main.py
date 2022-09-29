@@ -1,11 +1,6 @@
-import streamlit as st
+from streamlit_wizard import components
 
-import components
 import example_pages
-
-st.markdown(
-    "<style>" + open("static/style.css").read() + "</style>", unsafe_allow_html=True
-)
 
 intro = example_pages.IntroPage(name="intro")
 data = example_pages.FirstPageOfQuestions(name="questions")

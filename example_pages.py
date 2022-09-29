@@ -1,6 +1,6 @@
 import streamlit as st
 
-from components import Page
+from streamlit_wizard.components import Page
 
 
 class IntroPage(Page):

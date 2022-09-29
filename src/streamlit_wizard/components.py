@@ -4,6 +4,8 @@ from typing import List
 
 import streamlit as st
 
+from src.streamlit_wizard.style import inject_style
+
 
 class Page:
     def __init__(self, name: str):
@@ -11,6 +13,7 @@ class Page:
         `name` is the id which we will use to store this page's state
         """
         self.name = name
+        inject_style()
 
     @abc.abstractmethod
     def render(self) -> dict:
@@ -25,6 +28,7 @@ class Wizard:
 
         self.pages = pages
         self.display_page_count = display_page_count
+        inject_style()
 
         if len(set([page.name for page in pages])) != len(self.pages):
             raise ValueError(
